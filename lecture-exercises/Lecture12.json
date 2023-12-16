@@ -1,0 +1,7 @@
+{
+    "labs": [
+    { "id": 0, "topic": "JavaScript Review", "color": "blue" },
+    { "id": 1, "topic": "SOP, AJAX, XSS, and SQLi", "color": "green" },
+    { "id": 2, "topic": "Creating a Static HTML Page by Manipulating the DOM", "color": "red" }
+    ]
+}

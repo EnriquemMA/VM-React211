@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ICS 211 - Lecture 15</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+        <script type="text/babel">      
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+    
+        const EnterMessageDemo = () => {
+
+            // state var is message and setMessage() updates it
+            // init to empty string ''
+            const [message, setMessage] = React.useState('');
+                // More to come
+                
+                const handleText = e => {
+                    setMessage( e.target.value );
+                }   
+
+                return (
+                <form>
+                    <fieldset>
+                    <legend>Enter a Message:</legend>
+                    <input type='text' value={message}
+                    onChange={handleText}
+                    />
+                    </fieldset>
+                </form>
+            );                         
+        }       
+
+        const OSRadioButtonDemo = () => {
+
+            const [selectedChoice, setSelectedChoice ] =
+            React.useState('');
+            const operatingSystemList = [ 'linux', 'mac', 'windows' ];
+
+            const handleRadioButton = e => {
+                setSelectedChoice( e.target.value );
+            }
+
+            return (
+            <form>
+                <fieldset>
+                   <legend>Select which OS you use:</legend>
+                    { operatingSystemList.map( os =>
+                    <React.Fragment key={os}>
+                        <label>
+                        <input type='radio' value={os}
+                            checked={os === selectedChoice}
+                            onChange={handleRadioButton} />
+                            &nbsp;{os.charAt(0).toUpperCase() + os.slice(1)}
+                            </label>
+                            <br /><br />
+                            </React.Fragment>
+                    )}
+                    </fieldset>
+                </form>
+                );
+            }
+
+            const OSCheckboxDemo = () => {                
+
+                const[ checkboxGroup, setCheckboxGroup ] =
+                React.useState({ linux: false, mac: false, windows: false });
+                
+                const operatingSystemList = Object.keys(checkboxGroup);
+
+                const handleCheckbox = e => {
+                setCheckboxGroup({ ...checkboxGroup,
+                [e.target.value]: e.target.checked });
+                }                
+                                
+                return (            
+                    <form>
+                        <fieldset>
+                            <legend>Select which OS('s) you use:</legend>
+                            { operatingSystemList.map( os =>
+                            <React.Fragment key={os}>
+                            <label>
+                            <input type='checkbox' name='checkboxGroup' value={os}
+                            checked={checkboxGroup.os}
+                            onChange={handleCheckbox} />
+                            &nbsp;{os.charAt(0).toUpperCase() + os.slice(1)}
+                            </label>
+                            <br /><br />
+                            </React.Fragment>
+                            )}
+                        </fieldset>
+                    </form>
+                );            
+            }
+    
+        // closes EnterMessageDemo
+        root.render(
+            //<EnterMessageDemo />,
+            //<OSRadioButtonDemo />,
+            <OSCheckboxDemo />,
+            //document.getElementById('container')
+        );
+
+    </script>    
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ICS 211 - Lecture 10</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-is@18/umd/react-is.development.js"></script>
+    <script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>              
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+      // set up root
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+
+      // place your code here
+      const ButtonCounter = ({ className }) => {
+        //let count = 0; // regular var
+        const [ count, setCount ] = React.useState(0);
+        
+        // event handler - more later
+        const handleButton = event => {
+          //count++;
+          setCount(count+1);          
+          console.log(count);
+        }
+  
+        return (
+          <div className={className}>
+            <Header />
+            <StyledSpan>{count}</StyledSpan>
+            <StyledButton onClick={handleButton}>
+              Click Me!
+            </StyledButton>
+          </div>
+        );
+      };
+
+      // Header Component Goes Here
+      const StyledHeading = styled.h1`
+      font-size: 20pt;
+      color: navy;
+      `;
+      const Header = () => (
+      <StyledHeading>
+        ICS 211 Button Counter
+      </StyledHeading>
+      );
+
+      // StyledSpan Goes Here
+      const StyledSpan = styled.span`
+      background-color: aliceblue;
+      font-size: 25pt;
+      width: 3em;
+      text-align: center;
+      `;
+
+      // StyledButton Component Goes Here
+      const StyledButton = styled.button`
+      /* CSS from a book called CSS Secrets */
+      margin-top: 1em;
+      padding: .8em;
+      font-size: 15pt;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: .2em;
+      background: #58a linear-gradient(hsla(0, 0%, 100%,0.2),transparent);
+      box-shadow: 0 .05em .25em rgba(0, 0, 0, 0.5);
+      color: white;
+      text-shadow: 0 -.05em .05em rgba(0, 0, 0, 0.5);
+      `;
+
+      // StyledButtonCounter Component Goes Here
+      const StyledButtonCounter = styled(ButtonCounter)`
+      border: 2px solid;
+      width: 300px;
+      padding: 15px;
+      margin: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      `;
+
+      // root.render goes here
+      root.render(
+        <StyledButtonCounter />
+      );
+
+    </script>
+  </body>
+</html>

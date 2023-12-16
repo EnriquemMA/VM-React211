@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello World!</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    </head>
+<body>
+
+    <div id="container"></div>
+    
+    <script>
+        const container = document.getElementById('container');
+        const root = ReactDOM.createRoot(container);
+        const p = React.createElement('p', null, 'Mutating the DOM!');
+        root.render( p )
+    </script>
+
+</body>
+</html>

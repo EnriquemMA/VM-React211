@@ -1,0 +1,19 @@
+let json_ob = `{
+    "student" : {
+    "name" : {
+            "first" : "Victor",
+            "last" : "Munoz"
+            },
+    "email" : "c0523704@camosun.ca",
+    "courses" : [ 
+                {
+                "id" : "ICE211",
+                "title" : "React"
+                    }, 
+                {
+                "id" : "ICE214",
+                "title" : "C++"
+                    }
+                ]
+            }
+};`

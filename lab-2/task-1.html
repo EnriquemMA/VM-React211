@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lab 2 - Task 1 by Victor Munoz</title>
+  </head>
+  <body>
+
+    <script>
+
+    // JS code goes here
+    // create an element h1
+    const h1 = document.createElement("h1");
+    // modify the attribute
+    h1.textContent="Favourite Movies";
+    // insert a document
+    document.body.appendChild(h1);
+
+    // create an element h1
+    const h2 = document.createElement("h2");
+    h2.textContent="by Victor Munoz";
+    document.body.appendChild(h2);
+
+    // create th array with options
+    const my2DArray = [
+        [ "Spider-man", "https://www.imdb.com/title/tt10872600/" ],
+        [ "The Avengers", "https://en.wikipedia.org/wiki/The_Avengers_(2012_film)" ],
+        [ "Fast X", "https://wall.alphacoders.com/big.php?i=1319315&lang=Spanish" ]
+    ];
+    
+    // recursive the array
+    my2DArray.forEach( (favThing) => {        
+        //console.log( favThing[0] );        
+        
+        const li = document.createElement("li");
+        // create element a with attributes
+        const a = document.createElement("a");
+            a.textContent=favThing[1];
+            a.href=favThing[1];
+            a.target="_blank";
+        
+            // create element li                    
+            li.insertAdjacentHTML('beforeend',favThing[0]);
+            li.insertAdjacentHTML('beforeend', ":  ");          
+            li.appendChild(a);
+
+            // create element ul
+            const ul = document.createElement("ul");
+            // insert li on ul
+            ul.appendChild(li);     
+
+            //insert ul on document - body
+            document.body.appendChild(ul);
+    }
+
+    );
+
+    </script>
+  </body>
+</html>

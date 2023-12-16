@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ICS 211 - Lecture 07</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // set up root
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+
+      // place your code here
+
+      let someArray = ["Red", "Green", "Blue"];
+
+      // let newArray = someArray.forEach(
+      //   arrayElement => { console.log(arrayElement)        
+      //  }
+      // );
+
+      // let newArray = someArray.forEach(
+      //   (arrayElement,index) => {
+      //     console.log("index: " + index + " value: " + arrayElement )
+      //   }      
+      // );
+
+      function ICS211d(){
+        return (
+          <>
+          <h1>"Hello Vic" </h1>
+          </>
+        );
+      }
+
+const ICS211n = () => <><h1> "Welcome to Canada!" </h1> </>
+
+      root.render(
+        <>
+        <ICS211d />
+        <ICS211n />
+        </>
+      );
+
+        
+
+    </script>
+  </body>
+</html>

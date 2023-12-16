@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ICS 211 - Lecture 16</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <script src="https://unpkg.com/react-is@18.2.0/umd/react-is.production.min.js"></script>
+    <script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
+
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+
+
+
+      // react Components go here
+      const EnterMessageDemo = () => {
+        // state var is message and setMessage() updates it
+        // init to empty string ''
+        const [message, setMessage] = React.useState('');
+
+        // more to come
+        const handleText = event => {
+          setMessage( event.target.value );
+        }
+
+        return (
+          <form>
+            <fieldset>
+              <legend>Enter a Message:</legend>
+              <input type='text'
+                     value={message}
+                     onChange={handleText}
+              />
+            </fieldset>
+          </form>
+        );
+      }
+
+      const OSRadioButtonDemo = () => {
+        const [selectedChoice, setSelectedChoice ] = React.useState('');
+
+        const operatingSystemList = ['linux', 'mac', 'windows'];
+
+        const handleRadioButton = event => {
+          setSelectedChoice( event.target.value )
+        }
+        return (
+          <form>
+              <fieldset>
+                <legend>Select which OS you use:</legend>
+                { operatingSystemList.map( os => 
+                  <React.Fragment key={os}>
+                    <label>
+                      <input type='radio' value={os}
+                      checked={os === selectedChoice}
+                      onChange={handleRadioButton} />
+                      &nbsp;{os.charAt(0).toUpperCase() + os.slice(1)}
+                  </label>
+                  <br/><br/>
+                  </React.Fragment>
+                  )}
+              </fieldset>
+            </form>
+
+        );
+      }
+
+      const DisplayOS = ({ checkboxGroup }) => {
+        // allOS is going to be string of OS's user checked
+        let allOS = '';
+          // plural - do we need to add 's' at end?
+          let plural = '';
+          for ( const [os, isChecked] of Object.entries( checkboxGroup) ) {
+            if ( isChecked ) {
+              if ( allOS.length === 0 ) {
+                allOS += os.charAt(0).toUpperCase() + os.slice(1);
+              } else {
+                allOS += ', ' + os.charAt(0).toUpperCase() + os.slice(1);
+                plural = 's';
+              }
+            }
+          }
+        return (
+          <h1>You use the {allOS} Operating System{plural}.</h1>
+        );
+      }
+
+      const CheckboxForm = ( {checkboxGroup, handleCheckbox, handleSubmit} ) => {
+        let enableSubmit = false;
+            for (const checked of Object.values(checkboxGroup)) {
+              if (checked) enableSubmit = true;
+            }
+
+            const operatingSystemList = Object.keys(checkboxGroup);
+
+          return (
+            <form onSubmit={handleSubmit}>
+              <fieldset>
+                <legend>Select which OS's you use:</legend>
+                { operatingSystemList.map( os => 
+                  <React.Fragment key={os}>
+                    <label>
+                      <input type='checkbox' name='checkboxGroup' value={os}
+                      checked={checkboxGroup.os}
+                      onChange={handleCheckbox} />
+                      &nbsp;{os.charAt(0).toUpperCase() + os.slice(1)}
+                  </label>
+                  <br/><br/>
+                  </React.Fragment>
+                  )}
+                  {enableSubmit
+                    ? <input type='submit' value='Submit' />
+                    : <input type='submit' value='Submit' disabled />
+                  }                  
+                </fieldset>
+            </form>
+          )
+      }
+
+      const OSCheckboxDemo = () => {
+        const [checkboxGroup, setCheckboxGroup ] = 
+          React.useState( { linux: false, mac: false, windows: false });
+          const [ showForm, setShowForm ] = React.useState(true);        
+
+          const handleCheckbox = event => {
+            setCheckboxGroup({ ...checkboxGroup, 
+             [event.target.value]: event.target.checked
+            });
+          }
+
+          const handleSubmit = e => {
+              e.preventDefault();
+              setShowForm(false);
+          }
+          
+          /*if (showForm) {
+            return <CheckboxForm checkboxGroup={checkboxGroup} handleCheckbox={handleCheckbox} handleSubmit={handleSubmit}/>
+          }    
+          else{
+            //return ("Results");
+            return <DisplayOS checkboxGroup={checkboxGroup} />
+          }*/
+          return (
+            showForm
+            ? <CheckboxForm
+              checkboxGroup={checkboxGroup}
+              handleCheckbox={handleCheckbox}
+              handleSubmit={handleSubmit} />
+            : <DisplayOS checkboxGroup={checkboxGroup} />
+            )
+      }
+
+     // root.render(<EnterMessageDemo />);
+      root.render(<OSCheckboxDemo />);
+      
+
+      // root.render goes here
+    
+    
+    </script>
+  </body>
+</html>

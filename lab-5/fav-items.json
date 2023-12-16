@@ -1,0 +1,39 @@
+{
+  "favorite-items": [
+    {
+      "id": 0,
+      "name": "Spider-man",
+      "url": "https://www.imdb.com/title/tt10872600/",
+      "rating": 10,
+      "checked": true
+    },
+    {
+      "id": 1,
+      "name": "The Avengers",
+      "url": "https://en.wikipedia.org/wiki/The_Avengers_(2012_film)",
+      "rating": 8,
+      "checked": false
+    },
+    {
+      "id": 2,
+      "name": "Fast X",
+      "url": "https://wall.alphacoders.com/big.php?i=1319315&lang=Spanish",
+      "rating": 6,
+      "checked": false
+    },
+    {
+      "id": 3,
+      "name": "Fifty Shades of Grey",
+      "url": "https://en.wikipedia.org/wiki/Fifty_Shades_of_Grey_(film)",
+      "rating": 9,
+      "checked": false
+    },
+    {
+      "id": 4,
+      "name": "The impossible",
+      "url": "https://en.wikipedia.org/wiki/The_Impossible_(2012_film)",
+      "rating": 7,
+      "checked": false
+    }
+  ]
+}

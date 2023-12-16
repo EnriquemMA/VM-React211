@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ICS 211 - Lecture 07</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // set up root
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+
+      // place your code here
+
+    const labs = [
+        {id: '0', topic:'211' },
+        {id: '1', topic:'245' },
+        {id: '2', topic:'212' }
+    ];
+
+    const Header = () => <h1>Hello</h1>;
+
+    const Lab = ({id, topic}) => (
+
+        <p id={id}>You did a lab on {topic} this semester</p>
+
+    )
+
+    // const ICS211 = () => <>
+    //     <Header />
+    //          <Lab id={labs[0].id} topic={labs[0].topic}/>
+    //          <Lab id={labs[1].id} topic={labs[1].topic}/>
+    //          <Lab id={labs[2].id} topic={labs[2].topic}/>        
+    //     </>
+
+        // with map()
+        // const ICS211 = () => (
+        // <>
+        // <Header />
+        //     {labs.map( lab =>
+        //         <Lab key={lab.id} id={lab.id} topic={lab.topic} />
+        //     )}
+        // </>
+        // );
+
+        // with spread operator
+        const ICS211 = () => (
+        <>
+        <Header />
+            {labs.map( lab =>
+                <Lab key={lab.id} {...lab} />
+            )}
+        </>
+        );
+
+        root.render(
+            <ICS211 />
+        );
+        
+
+    </script>
+  </body>
+</html>
